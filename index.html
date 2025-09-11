@@ -1,425 +1,208 @@
-)<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Apptitude</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @media only screen and (max-width: 600px) {
-            #input {
-                width: 100%;
-            }
-        }
-
-        @media only screen and (max-width: 400px) {
-            #input {
-                width: 100%;
-            }
-            #solve, #speak {
-                width: 80px;
-                height: 25px;
-                font-size: 16px;
-            }
-        }
-
-        body {
-            background-color: rgb(173, 139, 139);
-            text-align: center;
-            position: fixed;
-            position: sticky;
-        }
-
-        #question {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(217, 226, 226);
-        }
-
-        #timer {
-            font-size: 25px;
-            font-weight: bold;
-            color: rgb(247, 8, 8);
-        }
-
-        .main {
-            background-color: rgb(173, 139, 139);
-            
-            width: auto;
-            height: auto;
-            margin-top: auto;
-            border-radius: 30%;
-        }
-
-        #submit {
-            background-color: rgb(173, 139, 139);
-            height: 40px;
-            width: 70px;
-            font-size: 15px;
-            border: none;
-            text-decoration: underline;
-        }
-
-        #submit:active {
-            background-color: rgb(231, 204, 229);
-            box-shadow: 0px 0px 10px #f1cceb;
-            text-transform: uppercase;
-            border-radius: 30%;
-        }
-         #save {
-            background-color: rgb(173, 139, 139);
-            height: 40px;
-            width: 70px;
-            font-size: 15px;
-            border: none;
-            text-decoration: underline;
-        }
-
-        #save:active {
-            background-color:rgb(163, 245, 152);
-            box-shadow: 0px 0px 10px rgb(163, 245, 152);
-            text-transform: uppercase;
-            border-radius: 30%;
-        }
-         #load {
-            background-color: rgb(173, 139, 139);
-            height: 40px;
-            width: 70px;
-            font-size: 15px;
-            border: none;
-            text-decoration: underline;
-        }
-
-        #load:active {
-           
-            background-color: rgb(130, 236, 250);
-            box-shadow: 0px 0px 10px rgb(130, 236, 250);
-            text-transform: uppercase;
-            border-radius: 30%;
-        }
-
-        span {
-            
-            top: 20px;
-            text-decoration: line-through;
-            color: aqua;
-          
-            font-size: 40px;
-            text-shadow: 0px 0px 10px #f11ae0;
-             animation: bounce 0.9s ease infinite alternate;
-        }
-
-        span:nth-child(1){
-    animation-delay: 0.1s;
-  }
-
- span:nth-child(2){
-    animation-delay: 0.1s;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phoenix Metal Works</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(120deg, #c1ecde, #a3d9c9);
+      color: #333;
+      scroll-behavior: smooth;
     }
+    header {
+      background: linear-gradient(90deg, #2c3e50, #16a085);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 5px solid #138d75;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 2.5rem; animation: fadeIn 2s ease-in-out; }
+    header p { margin: 5px 0 0; font-size: 1.1rem; color: #ecf0f1; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
- span:nth-child(3)
-{
-    animation-delay: 0.2s; 
- }
-span:nth-child(4)
-{
-    animation-delay: 0.3s;
- }
- span:nth-child(5)
-{
-    animation-delay: 0.5s;
-   
-           ;}
-    span:nth-child(6)
-    {
-        animation-delay: 0.6s;
-      
+    .container { width: 90%; max-width: 1200px; margin: 40px auto; }
+    section {
+      background: #fff; padding: 30px; margin-bottom: 30px; border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12); transition: transform .3s, opacity 1s;
+      opacity: 0; transform: translateY(40px);
     }
-    span:nth-child(7)
-    {
-        animation-delay: 0.7s;
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    h2 { color: #16a085; margin-bottom: 15px; border-left: 5px solid #16a085; padding-left: 10px; }
+
+    /* Services */
+    .services ul { list-style: none; padding: 0; }
+    .services li { margin: 10px 0; padding-left: 10px; border-left: 3px solid #16a085; }
+
+    /* Booking Form */
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    form input, form select, form textarea, form button {
+      padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 1rem; transition: 0.3s;
     }
-        @keyframes bounce
-        {
-            100%{
-                color: #f1cceb;
-                
-            }
-        
-        }
-            
-        .info{
-          text-align: left;
-          color: antiquewhite;
-        }
-    </style>
+    form input:focus, form select:focus, form textarea:focus {
+      border-color: #16a085; outline: none; box-shadow: 0 0 8px rgba(22,160,133,0.4);
+    }
+    form textarea { grid-column: span 2; resize: none; }
+    form button {
+      grid-column: span 2; background: #16a085; color: white; border: none; cursor: pointer;
+      font-size: 1.1rem; font-weight: bold; transition: .3s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    form button:hover { background: #138d75; transform: scale(1.05); }
+
+    /* Contact */
+    .phone-links a { display: inline-block; margin: 8px 10px; color: #16a085; font-weight: bold; text-decoration: none; transition: 0.3s; }
+    .phone-links a:hover { color: #138d75; transform: scale(1.1); }
+
+    /* Footer */
+    footer { text-align: center; padding: 20px; background: #2c3e50; color: white; font-size: 0.9rem; }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white;
+      border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000;
+      transition: 0.3s;
+    }
+    .whatsapp-float:hover { background: #20b954; transform: scale(1.1); }
+    .error { border: 2px solid red !important; }
+  </style>
 </head>
 <body>
-    <span>A</span>
-    <span>P</span>
-    <span>P</span>
-    <span>T</span>
-    <span>I</span>
-    <span>T</span>
-    <span>U</span>
-    <span>D</span>
-    <span>E</span>
-    <div class="main">
-        <p id="question"></p>
-        <p id="timer"></p>
-        <div id="options" style=" display:inline;"></div><br>
-        <button id="submit">Next</button>
-        
-        <p id="result"></p>
-        <button id="save">Save</button>
-        <button id="load">Load</button>
-    </div>
-    <details class="info">
-        <summary>Website Details</summary>
-        <p>WEBSITE DEVELOPER: MOHAMMAD AZAR</p>
-        <p>MOTIVE: TO SPREAD KNOWLEDGE AND TEST IQ</p>
-        <p>CAUVERY COLLEGE GONIKOPAA</p>
-        <p>SHARE WITH YOUR FRIENDS AND ASK THEM THEIR SCORE</p>
-        <p>ENJOY, HAVE FUN, AND SHARE</p>
-        <p>THANK YOU</p>
-    </details>
-    <script>
-        let questions = [
-            
-            {
-                question: "What is 2*2*2*2?",
-                options: ["2", "16", "2", "8"],
-                answer: "16"
-            },
-            {
-                question: "If a book costs $10, and shop keeper sell it and earns a profit of 14% what is the total amount made by shop keeper if he sells 1000 books?",
-                options: ["$140", "$200", "$240", "$180"],
-                answer: "$140"
-            },
-            {
-                question: "What is the next number in the sequence: 1, 7, 14, 32, 57, ?",
-                options: ["76", "82", "89", "79"],
-                answer: "82"
-            },
-            {
-                question: "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?",
-                options: ["5 minutes", "10 minutes", "15 minutes", "20 minutes"],
-                answer: "5 minutes"
-            },
-            {
-                question: "What is the sum of the interior angles of a triangle?",
-                options: ["180°", "270°", "360°", "450°"],
-                answer: "180°"
-            },
-            {
-                question: "A bakery sells 250 packets of bread per day. and make profit of 10% on each packet, what is the total amount of prifit made by them?a packet of bread cost $2",
-                options: ["$40", "$45", "$50", "$55"],
-                answer: "$500"
-            },
-            {
-                question: "What is the value of x in the equation 2x + 5 = 11?",
-                options: ["2", "3", "4", "5"],
-                answer: "3"
-            },
-            {
-                question: "A car travels from City A to City B at an average speed of 60 km/h and returns at an average speed of 40 km/h. What is the average speed for the entire trip?",
-                options: ["45 km/h", "48 km/h", "50 km/h", "52 km/h"],
-                answer: "48 km/h"
-            },
-            {
-                question: "What is the next number in the sequence: 1, 4, 9, 16, 25?",
-                options: ["36", "49", "64", "81"],
-                answer: "36"
-            },
-            {
-                question: "If a company has 15 employees and each employee earns $500 per week, what is the total weekly payroll?",
-                options: ["$6,500", "$7,000", "$7,500", "$8,000"],
-                answer: "$7,500"
-            },
-            {
-                question: "What is the value of x in the equation x/4 = 9?",
-                options: ["32", "36", "40", "45"],
-                answer: "36"
-            },
-            {
-                question: "A person travels 120 miles in 2 hours. What is their average speed?",
-                options: ["50 mph", "60 mph", "70 mph", "80 mph"],
-                answer: "60 mph"
-            },
-            {
-                question: "if a company make  sales of  12000 and spent 10% on salary and 8% is paid to tax what is left amunt",
-                options: ["$9,840", "$10,000", "$11,140", "$9,960"],
-                answer: "$9,840"
-            },
-            {
-                question: "What is the sum of the interior angles of a quadrilateral?",
-                options: ["180°", "270°", "360°", "450°"],
-                answer: "360°"
-            },
-            {
-                question: "If a bakery sells 300 loaves of bread per day and each loaf costs $2.50, how much money does the bakery make in a day?",
-                options: ["$600", "$650", "$700", "$750"],
-                answer: "$750"
-            },
-            {
-                question: "What is the value of x in the equation 2x - 3 = 7?",
-                options: ["4", "5", "6", "7"],
-                answer: "5"
-            },
-            {
-                question: "What is the value of x in the equation x^3 - 6x^2 + 11x - 6 = 0?",
-                options: ["1", "2", "3", "All of the above"],
-                answer: "All of the above"
-            },
-            {
-                question: "A car travels from City A to City B at an average speed of 90 km/h and returns at an average speed of 60 km/h. If the total distance traveled is 540 km, what is the average speed for the entire trip?",
-                options: ["70 km/h", "72 km/h", "75 km/h", "78 km/h"],
-                answer: "72 km/h"
-            },
-            {
-                question: "What is the sum of the first 15 terms of the series: 1 + 3 + 5 + 7 + ...?",
-                options: ["225", "250", "275", "300"],
-                answer: "225"
-            },
-            {
-                question: "If a company has 5 employees and each employee earns $600 per week, what is the total weekly payroll?",
-                options: ["$2,500", "$2,800", "$3,000", "$3,200"],
-                answer: "$3,000"
-            },
-            {
-                question: "A sum of money amounts to $1,200 in 4 years and $1,400 in 6 years. Find the rate of interest.",
-                options: ["6%", "8%", "10%", "12%"],
-                answer: "8%"
-            },
-            {
-                question: "What is the value of x in the equation 2x^2 + 5x - 3 = 0?",
-                options: ["-3", "1/2", "-3 or 1/2", "None of the above"],
-                answer: "-3 or 1/2"
-            },
-            {
-                question: "A car travels from City A to City B at an average speed of 100 km/h and returns at an average speed of 80 km/h. If the total distance traveled is 640 km, how long did the trip take?",
-                options: ["7 hours", "8 hours", "9 hours", "10 hours"],
-                answer: "8 hours"
-            },
-            {
-                question: "What is the sum of the interior angles of a hexagon?",
-                options: ["360°", "540°", "720°", "900°"],
-                answer: "720°"
-            },
-            {
-                question: "If a bakery sells 400 loaves of bread per day and each loaf costs $3, how much money does the bakery make in a day?",
-                options: ["$1,000", "$1,200", "$1,500", "$1,800"],
-                answer: "$1,200"
-            },
-            {
-                question: "A company has 4 machines that produce widgets. Machine A produces 25 widgets per hour, Machine B produces 30 widgets per hour, Machine C produces 35 widgets per hour, and Machine D produces 40 widgets per hour. If the company operates for 10 hours a day, how many widgets will it produce in a day?",
-                options: ["1,300", "1,400", "1,500", "1,600"],
-                answer: "1,300"
-            },
-            {
-                question: "What is the value of x in the equation x^4 - 16: 0?",
-                options: ["2", "-2", "2 or -2", "None of the above"],
-                answer: "2 or -2"
-            },
-            {
-                question: "A car travels from City A to City B at an average speed of 120 km/h and returns at an average speed of 90 km/h. If the total distance traveled is 720 km, what is the average speed for the entire trip?",
-                options: ["100 km/h", "200 km/h", "105 km/h", "110 km/h", "115 km/h"],
-                answer: "105 km/h"
-            },
-            {
-                question: "What is the sum of the first 20 terms of the series: 2 + 4 + 6 + 8 + ...?",
-                options: ["400", "420", "440", "460"],
-                answer: "420"
-            },
-            {
-                question: "If a company has 6 employees and each employee earns $700 per week, what is the total weekly payroll?",
-                options: ["$3,500", "$4,000", "$4,200", "$4,500"],
-                answer: "$4,200"
-            }
-        ];
+  <header>
+    <h1>Phoenix Metal Works</h1>
+    <p>Professional Welding & Fabrication Services</p>
+  </header>
 
-        let currentQuestion = 0;
-        let score = 0;
-        let timer;
-        let intervalId;
+  <div class="container">
+    <!-- Services -->
+    <section class="services">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Custom Welding & Fabrication</li>
+        <li>Industrial Welding Solutions</li>
+        <li>Stainless Steel & Aluminum Works</li>
+        <li>Gate, Grill & Metal Furniture Welding</li>
+        <li>Repair & Maintenance</li>
+      </ul>
+    </section>
 
-        function ask() {
-            clearInterval(intervalId);
-            document.getElementById("question").innerHTML = questions[currentQuestion].question;
-            let options = questions[currentQuestion].options;
-            let optionsHtml = "";
-            for (let i = 0; i < options.length; i++) {
-                optionsHtml += `<input type="radio" id="option${i}" name="option" value="${options[i]}"><label for="option${i}">${options[i]}</label><br>`;
-            }
-            document.getElementById("options").innerHTML = optionsHtml;
-            startTimer();
+    <!-- Booking -->
+    <section class="booking">
+      <h2>Book Welding Work</h2>
+      <form id="bookingForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}">
+        <select id="workType" required>
+          <option value="">Select Work Type</option>
+          <option>Gate / Grill Welding</option>
+          <option>Industrial Welding</option>
+          <option>Furniture Welding</option>
+          <option>Repair Service</option>
+          <option>Other</option>
+        </select>
+        <input type="date" id="date" required>
+        <input type="text" id="location" placeholder="Your Location (Auto-detect available)" required>
+        <textarea id="details" rows="4" placeholder="Work Details"></textarea>
+        <button type="submit">Submit Booking</button>
+      </form>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+      <h2>Contact Us</h2>
+      <div class="phone-links">
+        <a href="tel:9110281895">📞 9110281895</a>
+        <a href="tel:7483551580">📞 7483551580</a>
+        <a href="tel:741731392">📞 741731392</a>
+      </div>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/7483551580" target="_blank">Chat with us</a></p>
+      <p><strong>Location:</strong> Coorg, Karnataka</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Phoenix Metal Works | All Rights Reserved</p>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/7483551580" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    // Scroll animations
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add("visible");
         }
+      });
+    });
 
-        function startTimer() {
-            let timeLeft = 45;
-            document.getElementById("timer").innerHTML = `Time left: ${timeLeft} seconds`;
-            intervalId = setInterval(() => {
-                timeLeft--;
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                document.getElementById("timer").innerHTML = `Time left: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                if (timeLeft <= 0) {
-                    clearInterval(intervalId);
-                    checkAnswer(true);
-                }
-            }, 1000);
+    // Auto-detect location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        document.getElementById("location").value = `https://www.google.com/maps?q=${lat},${lng}`;
+      });
+    }
+
+    // WhatsApp booking
+    document.getElementById("bookingForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let name = document.getElementById("name");
+      let phone = document.getElementById("phone");
+      let workType = document.getElementById("workType");
+      let date = document.getElementById("date");
+      let location = document.getElementById("location");
+      let details = document.getElementById("details");
+
+      // Validation check
+      let inputs = [name, phone, workType, date, location];
+      let valid = true;
+      inputs.forEach(input => {
+        if (!input.value) {
+          input.classList.add("error");
+          valid = false;
+        } else {
+          input.classList.remove("error");
         }
+      });
 
-        function checkAnswer(timeUp = false) {
-            clearInterval(intervalId);
-            let options = document.getElementsByName("option");
-            let userAnswer;
-            for (let i = 0; i < options.length; i++) {
-                if (options[i].checked) {
-                    userAnswer = options[i].value;
-                    break;
-                }
-            }
-            if (timeUp) {
-                document.getElementById("result").innerHTML = "Sorry, time's up!";
-            } else if (userAnswer === undefined) {
-                document.getElementById("result").innerHTML = "Please select an option";
-                startTimer();
-                return;
-            } else if (userAnswer.toLowerCase() === questions[currentQuestion].answer.toLowerCase()) {
-                score++;
-                document.getElementById("result").innerHTML = "Correct answer!";
-            } else {
-                document.getElementById("result").innerHTML = `Incorrect answer. The correct answer was ${questions[currentQuestion].answer}`;
-            }
-            setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion >= questions.length) {
-                    document.getElementById("question").innerHTML = `Game Over! Your final score is ${score}/${questions.length}`;
-                    document.getElementById("options").innerHTML = "";
-                    document.getElementById("submit").disabled = true;
-                    document.getElementById("timer").innerHTML = "";
-                } else {
-                    ask();
-                }
-            }, 1000);
-        }
+      if (!valid) {
+        Swal.fire("Error", "Please fill in all required fields", "error");
+        return;
+      }
 
-        function saveQuiz() {
-            localStorage.setItem('currentQuestion', currentQuestion);
-            localStorage.setItem('score', score);
-            alert("Quiz saved!");
-        }
+      let message = 
+        `*New Welding Booking*%0A` +
+        `👤 Name: ${name.value}%0A` +
+        `📞 Phone: ${phone.value}%0A` +
+        `🛠 Work Type: ${workType.value}%0A` +
+        `📅 Date: ${date.value}%0A` +
+        `📍 Location: ${location.value}%0A` +
+        `📝 Details: ${details.value}`;
 
-        function loadQuiz() {
-            currentQuestion = parseInt(localStorage.getItem('currentQuestion'));
-            score = parseInt(localStorage.getItem('score'));
-            ask();
-        }
+      // Send to multiple WhatsApp numbers
+      let numbers = ["9110281895","7483551580","741731392"];
+      numbers.forEach((num, i) => {
+        setTimeout(() => {
+          window.open(`https://wa.me/${num}?text=${message}`, "_blank");
+        }, i * 800);
+      });
 
-        ask();
-        document.getElementById("submit").addEventListener("click", () => checkAnswer());
-        document.getElementById("save").addEventListener("click", saveQuiz);
-        document.getElementById("load").addEventListener("click", loadQuiz);
-    </script>
+      Swal.fire("Success!", "Your booking has been sent via WhatsApp ✅", "success");
+      document.getElementById("bookingForm").reset();
+    });
+  </script>
 </body>
 </html>
