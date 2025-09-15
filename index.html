@@ -20,8 +20,8 @@
         font-size: 3em;
         font-weight: bold;
         z-index: 9999;
-        animation: fadeOut 8s  ease forwards;
-        animation-delay: 6s; /* stay visible before fading */
+        animation: fadeOut 8s ease forwards;
+        animation-delay: 6s;
     }
     @keyframes fadeOut {
         to { opacity: 0; visibility: hidden; }
@@ -30,13 +30,8 @@
     #splash span {
         animation: glow 3s 4 alternate;
     }
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff; }
-        to   { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; }
-    }
 
-
-      #disclaimer {
+    #disclaimer {
         position: fixed;
         top: 0;
         left: 0;
@@ -51,14 +46,16 @@
         font-weight: bold;
         z-index: 9999;
         animation: fade 5s ease forwards;
-        animation-delay: 1.5s; /* stay visible before fading */
+        animation-delay: 1.5s;
     }
     @keyframes fade {
         to { opacity: 0; visibility: hidden; }
     }
-        #disclaimer span {
-        animation: glow 5s  alternate;
+    #disclaimer span {
+        animation: glow 5s alternate;
     }
+
+    /* Unified glow animation */
     @keyframes glow {
         from { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff; }
         to   { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; }
@@ -67,10 +64,8 @@
     .tel{
       color: white;
       text-decoration: none;
-      
     }
     .but{
-      
       color: black;
       background: linear-gradient(120deg, #e26bc8, #eb9065,#be0eb6);
       border:none;
@@ -79,11 +74,12 @@
       width: fit-content;
       font-size: 20px;
       text-decoration: none;
-     animation: abc  3s   infinite ease-in;
+      animation: abc  3s infinite ease-in;
+      padding: 10px 20px;
+      display: inline-block;
     }
     @keyframes abc {
       0%{ background: linear-gradient(120deg, #6be2ba, #659aeb,#d3ddec)}
-      
     }
     body {
       margin: 0;
@@ -151,6 +147,41 @@
     }
     .whatsapp-float:hover { background: #20b954; transform: scale(1.1); }
     .error { border: 2px solid red !important; }
+
+    /* 📱 Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 1rem; }
+
+      .container { width: 95%; margin: 20px auto; }
+
+      section { padding: 20px; }
+
+      /* Booking form single column */
+      form { grid-template-columns: 1fr; }
+      form textarea,
+      form button { grid-column: span 1; }
+
+      /* Contact links stacked */
+      .phone-links a {
+        display: block;
+        margin: 10px 0;
+        font-size: 1rem;
+      }
+
+      /* WhatsApp floating button smaller */
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 0.8rem;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      /* Splash & disclaimer text smaller */
+      #splash { font-size: 2em; }
+      #disclaimer { font-size: 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -176,7 +207,7 @@
         <li>Gate, Grill & Metal Furniture Welding</li>
         <li>Repair & Maintenance</li>
       </ul>
-     <a href="bhaiyashop.html" class="but">click to see our works</a>
+     <a href="bhaiyashop.html" class="but">Click to see our works</a>
     </section>
 
     <!-- Booking -->
@@ -204,9 +235,9 @@
     <section class="contact">
       <h2>Contact Us</h2>
       <div class="phone-links">
-        <a href="tel:9110281895">📞KALIM: 9110281895</a>
-        <a href="tel:7483551580">📞SALMAN KHAN: 7483551580</a>
-        <a href="tel:741731392">📞 SAHIL KHAN:9741731392</a>
+        <a href="tel:9110281895">📞 KALIM: 9110281895</a>
+        <a href="tel:7483551580">📞 SALMAN KHAN: 7483551580</a>
+        <a href="tel:9741731392">📞 SAHIL KHAN: 9741731392</a>
       </div>
       <p><strong>WhatsApp:</strong> <a href="https://wa.me/7483551580" target="_blank">Chat with us</a></p>
       <p><strong>Location:</strong> Coorg, Karnataka</p>
@@ -214,11 +245,10 @@
   </div>
 
   <footer>
-     <P>&COPY;THIS WEBSITE IS BUILD BY </P>
-    <a href="tel:9483927300" class="tel" ">TESARECT:📞9483927300</a>
-    <p><strong>WhatsApp(TESARECT):</strong> <a href="https://wa.me/9483927300" target="_blank">Chat with TESARECT</a></p>
+     <p>&COPY; THIS WEBSITE IS BUILT BY </p>
+    <a href="tel:9483927300" class="tel">TESARECT:📞9483927300</a>
     <p>&copy; 2025 Phoenix Metal Works | All Rights Reserved</p>
-    <p>&copy;coping the source of the website can cause you legel issuess</p>
+    <p>&copy; Copying the source of the website can cause you legal issues</p>
   </footer>
 
   <!-- Floating WhatsApp -->
@@ -236,7 +266,6 @@
       });
     });
 
-    //
     // Auto-detect location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(pos) {
@@ -291,11 +320,10 @@
         }, i * 800);
       });
 
-      Swal.fire("Success!", "Your booking has been sent via WhatsApp ✅", "success");
+      Swal.fire("Success!", "Your booking has been sent via WhatsApp ✅","success");
       document.getElementById("bookingForm").reset();
     });
    
   </script>
 </body>
 </html>
-
