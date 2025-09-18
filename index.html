@@ -20,15 +20,15 @@
         font-size: 3em;
         font-weight: bold;
         z-index: 9999;
-        animation: fadeOut 8s ease forwards;
-        animation-delay: 6s;
+        animation: fadeOut 4s ease forwards;
+        animation-delay: 5s;
     }
     @keyframes fadeOut {
         to { opacity: 0; visibility: hidden; }
     }
 
     #splash span {
-        animation: glow 3s 4 alternate;
+        animation: glow 2s 3 alternate;
     }
 
     #disclaimer {
@@ -45,8 +45,8 @@
         font-size: 3rem;
         font-weight: bold;
         z-index: 9999;
-        animation: fade 5s ease forwards;
-        animation-delay: 1.5s;
+        animation: fade 2s ease forwards;
+        animation-delay: 3s;
     }
     @keyframes fade {
         to { opacity: 0; visibility: hidden; }
@@ -182,14 +182,109 @@
       #splash { font-size: 2em; }
       #disclaimer { font-size: 2rem; }
     }
+
+    /* Button for showing images */
+    .z{
+      margin: 30px;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(120deg, #e26bc8, #eb9065, #be0eb6);
+      color: white;
+      transition: 0.3s;
+       animation: anime 5s infinite ease-in-out;
+    }
+    @keyframes anime  {
+     0%{
+       background: linear-gradient(120deg, #db8bcb, #3b0de0, #f706f7);
+     }
+    }
+
+    /* Hidden container */
+    .image-container {
+      display: none;
+      padding: 20px;
+      border: 2px solid black;
+      border-radius: 20px;
+      background: #fff;
+      margin: 20px auto;
+      width: 90%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* ✅ Fixed Image Styles */
+    img {
+      border-radius: 20px;
+      border: 5px solid black;
+      margin: 10px auto;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @media (max-width: 768px) {
+      img {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+      }
+    }
+
+    @keyframes fadeInContainer {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInImage {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .n {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(120deg, #6be2ba, #659aeb, #d3ddec);
+      border-radius: 12px;
+      font-size: 18px;
+    }
+    .n:hover {
+      background: linear-gradient(120deg, #e26bc8, #eb9065, #be0eb6);
+    }
   </style>
 </head>
 <body>
-  
-    <div id="splash"><p style="font-size: 15px;">made by</p><sub><span>TES<sub>a</sub>RECT</span></sub></div>
-    <div id="disclaimer">
-   <p ><span>Phoenix Metal Works</span></sub>
-    </div>
+
+  <div class="image-container" id="gallery">
+    <h2>Our Previous Works</h2>
+    <!-- ✅ Fixed with direct links -->
+    <img src="https://i.ibb.co/fzCkSFwf/sample1.jpg" alt="">
+    <img src="https://i.ibb.co/23HpvM3S/sample2.jpg" alt="">
+    <img src="https://i.ibb.co/CpgvZL49/sample3.jpg" alt="">
+    <img src="https://i.ibb.co/v6q5zfgS/sample4.jpg" alt="">
+    <img src="https://i.ibb.co/S4dzk1LG/sample5.jpg" alt="">
+    <img src="https://i.ibb.co/kVb147Xc/sample6.jpg" alt="">
+    <img src="https://i.ibb.co/wNYcz7n7/sample7.jpg" alt="">
+    <img src="https://i.ibb.co/wZLR01FB/sample8.jpg" alt="">
+    <img src="https://i.ibb.co/DfzKV2qM/sample9.jpg" alt="">
+    <img src="https://i.ibb.co/M5fk03Zt/sample10.jpg" alt="">
+    <img src="https://i.ibb.co/ym38HtfB/sample11.jpg" alt="">
+    <img src="https://i.ibb.co/dwM4qtmt/sample12.jpg" alt="">
+    <br>
+    <a href="chupi.html" class="n">Go Back to main page</a>
+  </div>
+
+  <div id="splash"><p style="font-size: 15px;"><u>made by</u></p><span>TESARECT</span></div>
+  <div id="disclaimer">
+    <p><span>Phoenix Metal Works</span></p>
+  </div>
     
   <header>
     <h1>Phoenix Metal Works</h1>
@@ -207,7 +302,8 @@
         <li>Gate, Grill & Metal Furniture Welding</li>
         <li>Repair & Maintenance</li>
       </ul>
-     <a href="bhaiyashop.html" class="but">Click to see our works</a>
+     
+      <button onclick="showImages()" class="z">Click Here To See Our Previous Works</button>
     </section>
 
     <!-- Booking -->
@@ -239,22 +335,22 @@
         <a href="tel:7483551580">📞 SALMAN KHAN: 7483551580</a>
         <a href="tel:9741731392">📞 SAHIL KHAN: 9741731392</a>
       </div>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/ 9741731392" target="_blank">Chat with us</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/9741731392" target="_blank" style="color: white;">Chat with us</a></p>
       <p><strong>Location:</strong> Coorg, Karnataka</p>
     </section>
   </div>
 
   <footer>
-     <p>&COPY; THIS WEBSITE IS BUILT BY </p>
+    <p>&COPY; THIS WEBSITE IS BUILT BY </p>
     <a href="tel:9483927300" class="tel">TESARECT:📞9483927300</a>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/ 9483927300" target="_blank">Chat with TESARECT</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/9483927300" target="_blank" style="color: white;">Chat with TESARECT</a></p>
     <p>&copy; 2025 Phoenix Metal Works | All Rights Reserved</p>
     <p>&copy; Copying the source of the website can cause you legal issues</p>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a href="https://wa.me/9483927300" class="whatsapp-float" target="_blank">TESARECT📞</a>
-
+  <a href="https://wa.me/9483927300" class="whatsapp-float" target="_blank" >TESARECT📞</a>
+ 
   <script>
     // Scroll animations
     const sections = document.querySelectorAll("section");
@@ -314,18 +410,30 @@
         `📝 Details: ${details.value}`;
 
       // Send to multiple WhatsApp numbers
-      let numbers = ["9110281895","7483551580","9741731392"];
+      let numbers = ["9741731392","7483551580","9110281895"];
       numbers.forEach((num, i) => {
         setTimeout(() => {
           window.open(`https://wa.me/${num}?text=${message}`, "_blank");
-        }, i * 800);
+        }, i * 1000);
       });
 
-      Swal.fire("Success!", "Your booking has been sent via WhatsApp ✅","success");
+      Swal.fire("Success", "Booking details sent via WhatsApp!", "success");
       document.getElementById("bookingForm").reset();
     });
-   
+
+    // Show images one by one
+    function showImages() {
+      const container = document.getElementById("gallery");
+      container.style.display = "block";
+      container.style.animation = "fadeInContainer 1s forwards";
+      
+      const images = container.querySelectorAll("img");
+      images.forEach((img, index) => {
+        setTimeout(() => {
+          img.style.animation = "fadeInImage 1s forwards";
+        }, index * 500);
+      });
+    }
   </script>
 </body>
 </html>
-
